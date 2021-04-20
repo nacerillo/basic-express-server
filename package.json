@@ -4,7 +4,9 @@
   "description": "Lab 2 of 401 Course.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose --coverage",
+    "start": "node index.js",
+    "start-watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
