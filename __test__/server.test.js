@@ -12,7 +12,10 @@ describe("**WEB SERVER**", () => {
   });
 
   it("should respond with a 500 on an error", () => {
-    //TODO
+    //TO
+    const response = await request.get("/bad");
+    expect(response.status).toEqual(500);
+    expect(response.body.route).toEqual("/bad");
   });
 
   it("should respond properly to a GET: /hello", async () => {
@@ -21,4 +24,6 @@ describe("**WEB SERVER**", () => {
     expect(response.text).toBe("hello world!"); // test your output
     // HINT: test for shape/type of data
   });
+
+
 });

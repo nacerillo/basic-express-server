@@ -6,6 +6,7 @@ const app = express();
 const notFound = require("./error-handlers/404.js");
 const errors = require("./error-handlers/500.js");
 const logger = require("./middleware/logger.js");
+const validator = require("./middleware/validator.js");
 
 // global middleware for handleing parsing of req.body
 app.use(express.json());
@@ -16,33 +17,13 @@ app.get("/hello", (req, res) => {
   res.send("hello world!");
 });
 
-// http://localhost:3005/hello/a/b
-app.get("/hello/:person/:another", (req, res) => {
-  console.log("params", req.params);
-  res.send(req.params);
-});
-
-app.get("/cool", logger, square(5), (req, res) => {
-  console.log(req.squared);
-  res.json({ num: req.squared });
-});
-
-app.post("/test-post", (req, res) => {
-  console.log(req.body);
-  res.send("cool, amazing ");
+// http://localhost:3005/person
+app.get("/person", validator, (req, res) => {
+  console.log("params", req.query.name);
+  res.send(req.query.name);
 });
 
 //this is called function-currying
-function square(n) {
-  return (req, res, next) => {
-    if (typeof n !== "number") {
-      next("not a number!");
-    } else {
-      req.squared = n * n;
-      next();
-    }
-  };
-}
 
 app.use("*", notFound);
 
