@@ -1,4 +1,5 @@
 const { expect } = require("@jest/globals");
+const { server } = require("../src/server.js");
 const validatorMiddleware = require("../src/middleware/validator.js");
 // mock request engine
 describe("validate name", () => {

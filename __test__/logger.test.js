@@ -1,20 +1,19 @@
 const loggerMiddleware = require("../src/middleware/logger.js");
 
-//Tested middleware needs to be either exported from server or seperate module
-
+// Tested middleware needs to either be exported from the server or a separate module
 describe("logger middleware", () => {
   let consoleSpy;
   let req = {};
   let res = {};
-  let next = jest.fn(); //spy on next() method
+  let next = jest.fn(); // spy on next method
 
   beforeEach(() => {
-    // Attach to the console
+    // Attach to the console (take it over)
     consoleSpy = jest.spyOn(console, "log").mockImplementation();
   });
 
   afterEach(() => {
-    // Restore console
+    // Put the console back
     consoleSpy.mockRestore();
   });
 
