@@ -11,15 +11,15 @@ const validator = require("./middleware/validator.js");
 // global middleware for handleing parsing of req.body
 app.use(express.json());
 app.use(logger);
-app.use(validator);
+
 // GET http://localhost:3005?name=nick
-app.get("/hello", (req, res) => {
+app.get("/hello", (req, res, next) => {
   //console.log(req.query);
   res.send("hello world!");
 });
 
-app.get("/person", validator, (req, res) => {
-  //console.log("name", req.query.name);
+app.get("/person", validator, (req, res, next) => {
+  console.log("name", req.query.name);
 
   res.status(201).json({ name: req.query.name });
 });
