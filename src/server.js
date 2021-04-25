@@ -21,7 +21,7 @@ app.get("/hello", (req, res, next) => {
 app.get("/person", validator, (req, res, next) => {
   console.log("name", req.query.name);
 
-  res.status(201).json({ name: req.query.name });
+  res.status(200).json({ name: req.query.name });
 });
 
 /*app.get("/cool", logger, square(5), (req, res) => {
